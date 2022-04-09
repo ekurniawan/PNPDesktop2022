@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dgvBarang = new System.Windows.Forms.DataGridView();
+            this.btnTambah = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarang)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,11 +43,22 @@
             this.dgvBarang.Size = new System.Drawing.Size(748, 188);
             this.dgvBarang.TabIndex = 0;
             // 
+            // btnTambah
+            // 
+            this.btnTambah.Location = new System.Drawing.Point(21, 243);
+            this.btnTambah.Name = "btnTambah";
+            this.btnTambah.Size = new System.Drawing.Size(94, 29);
+            this.btnTambah.TabIndex = 1;
+            this.btnTambah.Text = "Tambah";
+            this.btnTambah.UseVisualStyleBackColor = true;
+            this.btnTambah.Click += new System.EventHandler(this.btnTambah_Click);
+            // 
             // FormBarang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 520);
+            this.Controls.Add(this.btnTambah);
             this.Controls.Add(this.dgvBarang);
             this.Name = "FormBarang";
             this.Text = "FormBarang";
@@ -59,5 +71,6 @@
         #endregion
 
         private DataGridView dgvBarang;
+        private Button btnTambah;
     }
 }

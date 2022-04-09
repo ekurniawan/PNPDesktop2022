@@ -1,4 +1,5 @@
-﻿using POSApplication.FrontEnd.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using POSApplication.FrontEnd.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,23 @@ namespace POSApplication.FrontEnd.DAL
         public IEnumerable<Barang> GetAll()
         {
             var results = from b in _dbContext.Barangs
+                          orderby b.NamaBarang ascending
                           select b;
 
             return results;
+        }
+
+        public void Insert(Barang barang)
+        {
+            try
+            {
+                _dbContext.Barangs.Add(barang);
+                _dbContext.SaveChanges();
+            }
+            catch(DbUpdateException dbEx)
+            {
+                throw new Exception(dbEx.Message);
+            }
         }
     }
 }
