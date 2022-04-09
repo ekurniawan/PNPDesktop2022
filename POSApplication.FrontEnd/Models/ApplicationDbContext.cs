@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace POSApplication.FrontEnd.Data
+namespace POSApplication.FrontEnd.Models
 {
     public partial class ApplicationDbContext : DbContext
     {
@@ -22,6 +22,7 @@ namespace POSApplication.FrontEnd.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=POSDb;Integrated Security=SSPI");
             }
         }
@@ -31,6 +32,7 @@ namespace POSApplication.FrontEnd.Data
             modelBuilder.Entity<Barang>(entity =>
             {
                 entity.Property(e => e.KodeBarang).IsFixedLength();
+
                 entity.Property(e => e.TanggalBeli).HasDefaultValueSql("(getdate())");
             });
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace POSApplication.FrontEnd.Data
+namespace POSApplication.FrontEnd.Models
 {
     [Table("Barang")]
     public partial class Barang
@@ -13,7 +13,6 @@ namespace POSApplication.FrontEnd.Data
         [StringLength(5)]
         public string KodeBarang { get; set; } = null!;
         [StringLength(50)]
-        [Unicode(false)]
         public string? NamaBarang { get; set; }
         [Column(TypeName = "decimal(18, 0)")]
         public decimal HargaBeli { get; set; }
@@ -22,5 +21,6 @@ namespace POSApplication.FrontEnd.Data
         public int Stok { get; set; }
         [Column(TypeName = "date")]
         public DateTime TanggalBeli { get; set; }
+        public string? Keterangan { get; set; }
     }
 }
