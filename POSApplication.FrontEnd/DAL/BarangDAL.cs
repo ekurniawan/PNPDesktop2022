@@ -19,21 +19,50 @@ namespace POSApplication.FrontEnd.DAL
         //ambil semua data barang
         public IEnumerable<Barang> GetAll()
         {
-            var results = from b in _dbContext.Barangs
+            /*var results = from b in _dbContext.Barangs
                           orderby b.NamaBarang ascending
-                          select b;
-
+                          select b;*/
+            var results = _dbContext.Barangs.OrderBy(b => b.NamaBarang).ToList();
             return results;
         }
 
-        public void Insert(Barang barang)
+        public int Insert(Barang barang)
         {
             try
             {
                 _dbContext.Barangs.Add(barang);
-                _dbContext.SaveChanges();
+                return _dbContext.SaveChanges();
             }
-            catch(DbUpdateException dbEx)
+            catch(DbUpdateConcurrencyException dbEx)
+            {
+                throw new Exception(dbEx.Message);
+            }
+        }
+
+        public Barang GetByKode(string kodeBarang)
+        {
+            var result = _dbContext.Barangs.Where(b=>b.KodeBarang==kodeBarang).FirstOrDefault();
+            if (result == null)
+                throw new Exception($"Barang dengan kode {kodeBarang} tidak ditemukan");
+            return result;
+        }
+
+        public int Update(Barang barang)
+        {
+            try
+            {
+                var updateBarang = GetByKode(barang.KodeBarang);
+
+                updateBarang.NamaBarang = barang.NamaBarang;
+                updateBarang.HargaBeli = barang.HargaBeli;
+                updateBarang.HargaJual = barang.HargaJual;
+                updateBarang.Stok = barang.Stok;
+                updateBarang.Keterangan = barang.Keterangan;
+
+                var result = _dbContext.SaveChanges();
+                return result;
+            }
+            catch (DbUpdateConcurrencyException dbEx)
             {
                 throw new Exception(dbEx.Message);
             }
