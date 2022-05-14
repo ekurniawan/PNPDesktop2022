@@ -103,6 +103,28 @@ namespace POSApplication.FrontEnd
             isNew = true;
         }
 
+        private void InisialisasiEdit()
+        {
+            HapusBinding();
+            foreach(var ctr in this.Controls)
+            {
+                if(ctr is TextBox)
+                {
+                    var myTextbox = ctr as TextBox;
+                    myTextbox.Enabled = true;
+                }
+                else if (ctr is Button)
+                {
+                    var myButton = ctr as Button;
+                    myButton.Enabled = false;
+                }
+            }
+            btnSave.Enabled = true;
+            txtKodeBarang.Enabled = false;
+            txtNamaBarang.Focus();
+            isNew = false;
+        }
+
         #endregion
 
         #region CRUD
@@ -140,6 +162,38 @@ namespace POSApplication.FrontEnd
             }
         }
 
+        private void UpdateBarang()
+        {
+            try
+            {
+                var editBarang = new Barang
+                {
+                    NamaBarang = txtNamaBarang.Text,
+                    HargaBeli = Convert.ToDecimal(txtHargaBeli.Text),
+                    HargaJual = Convert.ToDecimal(txtHargaJual.Text),
+                    Stok = Convert.ToInt32(txtStok.Text),
+                    TanggalBeli = Convert.ToDateTime(dtpTanggalBeli.Value),
+                    KodeBarang = txtKodeBarang.Text
+                };
+                int result = barangDAL.Update(editBarang);
+                if(result == 1)
+                {
+                    MessageBox.Show("Data Berhasil Diupdate");
+                    InisialisasiAwal();
+                }
+                else
+                {
+                    MessageBox.Show("Data gagal diupdate");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($"{ex.Message}", "Kesalahan", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
         private void IsiDataBarang()
@@ -160,11 +214,49 @@ namespace POSApplication.FrontEnd
             {
                 InsertBarang();
             }
+            else
+            {
+                UpdateBarang();
+            }
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
             InisialisasiNew();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            InisialisasiEdit();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var output = MessageBox.Show("Apakah anda yakin akan mendelete data?","Konfirmasi",
+                MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
+            if(output == DialogResult.Yes)
+            {
+                try
+                {
+                    HapusBinding();
+                    int result = barangDAL.Delete(txtKodeBarang.Text);
+                    if(result == 1)
+                    {
+                        MessageBox.Show("Data barang berhasil di delete", "Konfirmasi",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        InisialisasiAwal();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data gagal di delete");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Kesalahan: {ex.Message}", "Kesalahan", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

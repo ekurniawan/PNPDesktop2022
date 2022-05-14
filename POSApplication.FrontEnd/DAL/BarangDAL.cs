@@ -67,5 +67,20 @@ namespace POSApplication.FrontEnd.DAL
                 throw new Exception(dbEx.Message);
             }
         }
+
+        public int Delete(string kodeBarang)
+        {
+            try
+            {
+                var deleteBarang = GetByKode(kodeBarang);
+                _dbContext.Barangs.Remove(deleteBarang);
+                var result = _dbContext.SaveChanges();
+                return result;
+            }
+            catch (DbUpdateConcurrencyException dbEx)
+            {
+                throw new Exception(dbEx.Message);
+            }
+        }
     }
 }

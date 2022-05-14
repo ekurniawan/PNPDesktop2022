@@ -9,6 +9,11 @@ namespace POSApplication.FrontEnd.Models
     [Table("Barang")]
     public partial class Barang
     {
+        public Barang()
+        {
+            ItemBelis = new HashSet<ItemBeli>();
+        }
+
         [Key]
         [StringLength(5)]
         public string KodeBarang { get; set; } = null!;
@@ -22,5 +27,8 @@ namespace POSApplication.FrontEnd.Models
         [Column(TypeName = "date")]
         public DateTime TanggalBeli { get; set; }
         public string? Keterangan { get; set; }
+
+        [InverseProperty("KodeBarangNavigation")]
+        public virtual ICollection<ItemBeli> ItemBelis { get; set; }
     }
 }
