@@ -71,6 +71,7 @@
             this.dgvSupplier.RowTemplate.Height = 29;
             this.dgvSupplier.Size = new System.Drawing.Size(800, 301);
             this.dgvSupplier.TabIndex = 12;
+            this.dgvSupplier.DoubleClick += new System.EventHandler(this.dgvSupplier_DoubleClick);
             // 
             // FormSupplier
             // 

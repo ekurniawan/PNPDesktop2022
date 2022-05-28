@@ -15,6 +15,18 @@ namespace POSApplication.FrontEnd
 {
     public partial class FormSupplier : Form
     {
+        #region Singleton
+
+        private static FormSupplier _instance;
+        public static FormSupplier Instance()
+        {
+            if (_instance == null)
+                _instance = new FormSupplier();
+            return _instance; 
+        }
+
+        #endregion
+
         private BindingSource bs;
         private SupplierDAL _supplierDAL;
 
@@ -89,6 +101,15 @@ namespace POSApplication.FrontEnd
             {
                 IsiDataSupplier();
             }
+        }
+
+        private void dgvSupplier_DoubleClick(object sender, EventArgs e)
+        {
+            SupplierViewModel currSup = (SupplierViewModel)bs.Current;
+            //MessageBox.Show(currSup.SupplierId.ToString());
+           
+            FormPembelian.Instance().TxtKodeSupplier.Text = currSup.SupplierId.ToString();
+            this.Hide();
         }
     }
 }
