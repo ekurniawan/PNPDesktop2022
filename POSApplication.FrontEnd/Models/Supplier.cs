@@ -23,8 +23,6 @@ namespace POSApplication.FrontEnd.Models
         public string? Alamat { get; set; }
         [StringLength(50)]
         public string? Telp { get; set; }
-
-        [InverseProperty("Supplier")]
         public virtual ICollection<NotaBeli> NotaBelis { get; set; }
     }
 }

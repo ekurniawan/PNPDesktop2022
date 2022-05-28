@@ -23,9 +23,7 @@ namespace POSApplication.FrontEnd.Models
         public int SupplierId { get; set; }
 
         [ForeignKey("SupplierId")]
-        [InverseProperty("NotaBelis")]
         public virtual Supplier Supplier { get; set; } = null!;
-        [InverseProperty("NoNotaBeliNavigation")]
         public virtual ICollection<ItemBeli> ItemBelis { get; set; }
     }
 }

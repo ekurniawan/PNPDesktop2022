@@ -28,7 +28,7 @@ namespace POSApplication.FrontEnd.Models
         public DateTime TanggalBeli { get; set; }
         public string? Keterangan { get; set; }
 
-        [InverseProperty("KodeBarangNavigation")]
+       
         public virtual ICollection<ItemBeli> ItemBelis { get; set; }
     }
 }

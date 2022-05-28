@@ -21,10 +21,8 @@ namespace POSApplication.FrontEnd.Models
         public decimal HargaBeli { get; set; }
 
         [ForeignKey("KodeBarang")]
-        [InverseProperty("ItemBelis")]
         public virtual Barang Barang { get; set; } = null!;
         [ForeignKey("NoNotaBeli")]
-        [InverseProperty("ItemBelis")]
         public virtual NotaBeli NotoBeli { get; set; } = null!;
     }
 }

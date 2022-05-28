@@ -15,16 +15,16 @@ namespace POSApplication.FrontEnd.DAL
             _dbContext = new ApplicationDbContext();
         }
 
-        public IEnumerable<Supplier> GetAll()
+        public List<Supplier> GetAll()
         {
-            var suppliers = _dbContext.Suppliers.OrderBy(s => s.Nama);
+            var suppliers = _dbContext.Suppliers.OrderBy(s => s.Nama).ToList();
             return suppliers;
         }
 
-        public IEnumerable<Supplier> GetByNama(string nama)
+        public List<Supplier> GetByNama(string nama)
         {
             var results = _dbContext.Suppliers.Where(s => s.Nama.Contains(nama))
-                .OrderBy(s => s.Nama);
+                .OrderBy(s => s.Nama).ToList();
             return results;
         }
     }
