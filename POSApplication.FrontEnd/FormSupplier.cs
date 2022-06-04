@@ -89,6 +89,7 @@ namespace POSApplication.FrontEnd
         private void FormSupplier_Load(object sender, EventArgs e)
         {
             IsiDataSupplier();
+            
         }
 
         private void txtNamaSupplier_TextChanged(object sender, EventArgs e)
@@ -107,8 +108,10 @@ namespace POSApplication.FrontEnd
         {
             SupplierViewModel currSup = (SupplierViewModel)bs.Current;
             //MessageBox.Show(currSup.SupplierId.ToString());
-           
             FormPembelian.Instance().TxtKodeSupplier.Text = currSup.SupplierId.ToString();
+            FormPembelian.Instance().TxtNamaSupplier.Text = currSup.Nama;
+            FormPembelian.Instance().TxtAlamatSupplier.Text = currSup.Alamat;
+            FormPembelian.Instance().TxtTelponSupplier.Text = currSup.Telp;
             this.Hide();
         }
     }
