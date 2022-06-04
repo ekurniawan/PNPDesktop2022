@@ -29,11 +29,13 @@ namespace POSApplication.FrontEnd
 
         private BindingSource bs;
         private SupplierDAL _supplierDAL;
+        private PembelianDAL _pembelianDAL;
 
         public FormSupplier()
         {
             InitializeComponent();
             _supplierDAL = new SupplierDAL();
+            _pembelianDAL = new PembelianDAL();
             bs = new BindingSource();
         }
 
@@ -112,6 +114,12 @@ namespace POSApplication.FrontEnd
             FormPembelian.Instance().TxtNamaSupplier.Text = currSup.Nama;
             FormPembelian.Instance().TxtAlamatSupplier.Text = currSup.Alamat;
             FormPembelian.Instance().TxtTelponSupplier.Text = currSup.Telp;
+
+            //update data supplier di pembelian
+            _pembelianDAL.UpdateNotaBeli(FormPembelian.Instance().TxtNotaPembelian.Text,
+                FormPembelian.Instance().DtTanggalNotaBeli.Value,
+                currSup.SupplierId);
+
             this.Hide();
         }
     }

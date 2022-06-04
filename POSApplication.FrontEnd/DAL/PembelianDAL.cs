@@ -18,12 +18,22 @@ namespace POSApplication.FrontEnd.DAL
         public void UpdateNotaBeli(string noNota,DateTime tanggalBeli, int supplierId)
         {
             //cari nonotabeli yang akan diupdate
-
+            var editNotaBeli = _dbContext.NotaBelis.FirstOrDefault(n => n.NoNotaBeli == noNota);
+            if(editNotaBeli!=null)
+            {
+                editNotaBeli.SupplierId = supplierId;
+                editNotaBeli.TanggalBeli = tanggalBeli;
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                throw new Exception($"Data nota beli {noNota} tidak ditemukan");
+            }
         }
 
         public string GenerateNoNotaBeli(DateTime tanggalBeli, int supplierId)
         {
-            var lastNota = _dbContext.NotaBelis.OrderBy(n => n.NoNotaBeli).FirstOrDefault();
+            var lastNota = _dbContext.NotaBelis.OrderByDescending(n => n.NoNotaBeli).FirstOrDefault();
             int nomor = 1;
             string nonota = string.Empty;
             if (lastNota == null)
@@ -52,7 +62,7 @@ namespace POSApplication.FrontEnd.DAL
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error: {ex.Message}");
+                throw new Exception($"Error: {ex.InnerException.Message}");
             }
         }
     }

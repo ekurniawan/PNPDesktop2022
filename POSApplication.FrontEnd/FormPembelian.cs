@@ -51,6 +51,18 @@ namespace POSApplication.FrontEnd
             set { txtTelpSupplier = value; }
         }
 
+        public DateTimePicker DtTanggalNotaBeli
+        {
+            get { return dtTanggalNotaBeli; }
+            set { dtTanggalNotaBeli = value; }
+        }
+
+        public TextBox TxtNotaPembelian
+        {
+            get { return txtNoNotaBeli; }
+            set { txtNoNotaBeli = value; }
+        }
+
         private PembelianDAL _pembelianDAL;
         public FormPembelian()
         {
