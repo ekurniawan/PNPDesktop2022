@@ -63,6 +63,30 @@ namespace POSApplication.FrontEnd
             set { txtNoNotaBeli = value; }
         }
 
+        public TextBox TxtKodeBarang
+        {
+            get { return txtKode; }
+            set { txtKode = value; }
+        }
+
+        public TextBox TxtNamaBarang
+        {
+            get { return txtNamaBarang; }
+            set { txtNamaBarang = value; }
+        }
+
+        public TextBox TxtQty
+        {
+            get { return txtQty; }
+            set { txtQty = value; }
+        }
+
+        public TextBox TxtHargaBeli
+        {
+            get { return txtHargaBeli; }
+            set { txtHargaBeli = value; }
+        }
+
         private PembelianDAL _pembelianDAL;
         public FormPembelian()
         {
@@ -79,6 +103,23 @@ namespace POSApplication.FrontEnd
         {
             dtTanggalNotaBeli.Value = DateTime.Now;
             txtNoNotaBeli.Text = _pembelianDAL.GenerateNoNotaBeli(dtTanggalNotaBeli.Value, 1);
+        }
+
+        private void txtKode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Enter)
+            {
+                FormBarang.Instance().Show();
+            }
+        }
+
+        private void txtQty_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Enter)
+            {
+                double subtotal = Convert.ToDouble(txtQty.Text) * Convert.ToDouble(TxtHargaBeli.Text);
+                txtSubtotal.Text = subtotal.ToString("N0");
+            }
         }
     }
 }

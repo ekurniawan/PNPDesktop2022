@@ -28,7 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvBarang = new System.Windows.Forms.DataGridView();
+            this.KodeBarang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NamaBarang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HargaBeli = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HargaJual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stok = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TanggalBeli = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemBelis = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Keterangan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,18 +59,110 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtCariData = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarang)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvBarang
             // 
             this.dgvBarang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBarang.Location = new System.Drawing.Point(0, 237);
+            this.dgvBarang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.KodeBarang,
+            this.NamaBarang,
+            this.HargaBeli,
+            this.HargaJual,
+            this.Stok,
+            this.TanggalBeli,
+            this.ItemBelis,
+            this.Keterangan});
+            this.dgvBarang.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvBarang.Location = new System.Drawing.Point(0, 275);
             this.dgvBarang.Name = "dgvBarang";
             this.dgvBarang.RowHeadersWidth = 51;
             this.dgvBarang.RowTemplate.Height = 29;
-            this.dgvBarang.Size = new System.Drawing.Size(986, 188);
+            this.dgvBarang.Size = new System.Drawing.Size(833, 245);
             this.dgvBarang.TabIndex = 0;
+            this.dgvBarang.DoubleClick += new System.EventHandler(this.dgvBarang_DoubleClick);
+            // 
+            // KodeBarang
+            // 
+            this.KodeBarang.DataPropertyName = "KodeBarang";
+            this.KodeBarang.HeaderText = "Kode";
+            this.KodeBarang.MinimumWidth = 6;
+            this.KodeBarang.Name = "KodeBarang";
+            this.KodeBarang.Width = 80;
+            // 
+            // NamaBarang
+            // 
+            this.NamaBarang.DataPropertyName = "NamaBarang";
+            this.NamaBarang.HeaderText = "Nama Barang";
+            this.NamaBarang.MinimumWidth = 6;
+            this.NamaBarang.Name = "NamaBarang";
+            this.NamaBarang.Width = 250;
+            // 
+            // HargaBeli
+            // 
+            this.HargaBeli.DataPropertyName = "HargaBeli";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.HargaBeli.DefaultCellStyle = dataGridViewCellStyle1;
+            this.HargaBeli.HeaderText = "Harga Beli";
+            this.HargaBeli.MinimumWidth = 6;
+            this.HargaBeli.Name = "HargaBeli";
+            this.HargaBeli.Width = 125;
+            // 
+            // HargaJual
+            // 
+            this.HargaJual.DataPropertyName = "HargaJual";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.HargaJual.DefaultCellStyle = dataGridViewCellStyle2;
+            this.HargaJual.HeaderText = "Harga Jual";
+            this.HargaJual.MinimumWidth = 6;
+            this.HargaJual.Name = "HargaJual";
+            this.HargaJual.Width = 125;
+            // 
+            // Stok
+            // 
+            this.Stok.DataPropertyName = "Stok";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Stok.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Stok.HeaderText = "Stok";
+            this.Stok.MinimumWidth = 6;
+            this.Stok.Name = "Stok";
+            this.Stok.Width = 70;
+            // 
+            // TanggalBeli
+            // 
+            this.TanggalBeli.DataPropertyName = "TanggalBeli";
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.TanggalBeli.DefaultCellStyle = dataGridViewCellStyle4;
+            this.TanggalBeli.HeaderText = "TanggalBeli";
+            this.TanggalBeli.MinimumWidth = 6;
+            this.TanggalBeli.Name = "TanggalBeli";
+            this.TanggalBeli.Width = 125;
+            // 
+            // ItemBelis
+            // 
+            this.ItemBelis.DataPropertyName = "ItemBelis";
+            this.ItemBelis.HeaderText = "ItemBelis";
+            this.ItemBelis.MinimumWidth = 6;
+            this.ItemBelis.Name = "ItemBelis";
+            this.ItemBelis.Visible = false;
+            this.ItemBelis.Width = 125;
+            // 
+            // Keterangan
+            // 
+            this.Keterangan.DataPropertyName = "Keterangan";
+            this.Keterangan.HeaderText = "Keterangan";
+            this.Keterangan.MinimumWidth = 6;
+            this.Keterangan.Name = "Keterangan";
+            this.Keterangan.Visible = false;
+            this.Keterangan.Width = 125;
             // 
             // label1
             // 
@@ -217,11 +321,30 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(27, 242);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(169, 20);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Masukan Nama Barang :";
+            // 
+            // txtCariData
+            // 
+            this.txtCariData.Location = new System.Drawing.Point(202, 239);
+            this.txtCariData.Name = "txtCariData";
+            this.txtCariData.Size = new System.Drawing.Size(356, 27);
+            this.txtCariData.TabIndex = 22;
+            this.txtCariData.TextChanged += new System.EventHandler(this.txtCariData_TextChanged);
+            // 
             // FormBarang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 520);
+            this.ClientSize = new System.Drawing.Size(833, 520);
+            this.Controls.Add(this.txtCariData);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnEdit);
@@ -271,5 +394,15 @@
         private Button btnEdit;
         private Button btnSave;
         private Button btnDelete;
+        private Label label8;
+        private TextBox txtCariData;
+        private DataGridViewTextBoxColumn KodeBarang;
+        private DataGridViewTextBoxColumn NamaBarang;
+        private DataGridViewTextBoxColumn HargaBeli;
+        private DataGridViewTextBoxColumn HargaJual;
+        private DataGridViewTextBoxColumn Stok;
+        private DataGridViewTextBoxColumn TanggalBeli;
+        private DataGridViewTextBoxColumn ItemBelis;
+        private DataGridViewTextBoxColumn Keterangan;
     }
 }

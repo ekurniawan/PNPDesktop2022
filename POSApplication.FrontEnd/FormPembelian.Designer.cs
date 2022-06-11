@@ -41,6 +41,20 @@
             this.txtNoNotaBeli = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dtTanggalNotaBeli = new System.Windows.Forms.DateTimePicker();
+            this.dgvBarang = new System.Windows.Forms.DataGridView();
+            this.txtKode = new System.Windows.Forms.TextBox();
+            this.txtNamaBarang = new System.Windows.Forms.TextBox();
+            this.txtQty = new System.Windows.Forms.TextBox();
+            this.txtHargaBeli = new System.Windows.Forms.TextBox();
+            this.txtSubtotal = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTotalHarga = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBarang)).BeginInit();
             this.SuspendLayout();
             // 
             // txtKodeSupplier
@@ -155,11 +169,132 @@
             this.dtTanggalNotaBeli.Size = new System.Drawing.Size(145, 27);
             this.dtTanggalNotaBeli.TabIndex = 12;
             // 
+            // dgvBarang
+            // 
+            this.dgvBarang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBarang.Location = new System.Drawing.Point(-1, 213);
+            this.dgvBarang.Name = "dgvBarang";
+            this.dgvBarang.RowHeadersWidth = 51;
+            this.dgvBarang.RowTemplate.Height = 29;
+            this.dgvBarang.Size = new System.Drawing.Size(809, 237);
+            this.dgvBarang.TabIndex = 13;
+            // 
+            // txtKode
+            // 
+            this.txtKode.Location = new System.Drawing.Point(20, 180);
+            this.txtKode.Name = "txtKode";
+            this.txtKode.Size = new System.Drawing.Size(89, 27);
+            this.txtKode.TabIndex = 14;
+            this.txtKode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKode_KeyDown);
+            // 
+            // txtNamaBarang
+            // 
+            this.txtNamaBarang.Location = new System.Drawing.Point(115, 180);
+            this.txtNamaBarang.Name = "txtNamaBarang";
+            this.txtNamaBarang.Size = new System.Drawing.Size(254, 27);
+            this.txtNamaBarang.TabIndex = 15;
+            // 
+            // txtQty
+            // 
+            this.txtQty.Location = new System.Drawing.Point(375, 180);
+            this.txtQty.Name = "txtQty";
+            this.txtQty.Size = new System.Drawing.Size(99, 27);
+            this.txtQty.TabIndex = 16;
+            this.txtQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQty_KeyDown);
+            // 
+            // txtHargaBeli
+            // 
+            this.txtHargaBeli.Location = new System.Drawing.Point(478, 180);
+            this.txtHargaBeli.Name = "txtHargaBeli";
+            this.txtHargaBeli.Size = new System.Drawing.Size(133, 27);
+            this.txtHargaBeli.TabIndex = 17;
+            // 
+            // txtSubtotal
+            // 
+            this.txtSubtotal.Location = new System.Drawing.Point(618, 180);
+            this.txtSubtotal.Name = "txtSubtotal";
+            this.txtSubtotal.Size = new System.Drawing.Size(133, 27);
+            this.txtSubtotal.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(20, 157);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(51, 20);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Kode :";
+            // 
+            // txtTotalHarga
+            // 
+            this.txtTotalHarga.Location = new System.Drawing.Point(618, 454);
+            this.txtTotalHarga.Name = "txtTotalHarga";
+            this.txtTotalHarga.Size = new System.Drawing.Size(133, 27);
+            this.txtTotalHarga.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(518, 457);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(94, 20);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Total Harga :";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(115, 157);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(56, 20);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Nama :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(375, 157);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 20);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Qty :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(478, 157);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 20);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Harga :";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(618, 157);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 20);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Subtotal";
+            // 
             // FormPembelian
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(810, 493);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtTotalHarga);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtSubtotal);
+            this.Controls.Add(this.txtHargaBeli);
+            this.Controls.Add(this.txtQty);
+            this.Controls.Add(this.txtNamaBarang);
+            this.Controls.Add(this.txtKode);
+            this.Controls.Add(this.dgvBarang);
             this.Controls.Add(this.dtTanggalNotaBeli);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtNoNotaBeli);
@@ -176,6 +311,7 @@
             this.Name = "FormPembelian";
             this.Text = "FormPembelian";
             this.Load += new System.EventHandler(this.FormPembelian_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBarang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +332,18 @@
         private TextBox txtNoNotaBeli;
         private Label label6;
         private DateTimePicker dtTanggalNotaBeli;
+        private DataGridView dgvBarang;
+        private TextBox txtKode;
+        private TextBox txtNamaBarang;
+        private TextBox txtQty;
+        private TextBox txtHargaBeli;
+        private TextBox txtSubtotal;
+        private Label label7;
+        private TextBox txtTotalHarga;
+        private Label label8;
+        private Label label9;
+        private Label label10;
+        private Label label11;
+        private Label label12;
     }
 }

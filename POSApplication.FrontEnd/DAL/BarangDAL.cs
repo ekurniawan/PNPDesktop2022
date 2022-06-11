@@ -82,5 +82,12 @@ namespace POSApplication.FrontEnd.DAL
                 throw new Exception(dbEx.Message);
             }
         }
+
+        public List<Barang> GetByNama(string nama)
+        {
+            var results = _dbContext.Barangs.Where(b => b.NamaBarang.ToLower().Contains(nama.ToLower()))
+                .OrderBy(b=>b.NamaBarang).ToList();
+            return results;
+        }
     }
 }

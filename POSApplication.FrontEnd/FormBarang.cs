@@ -26,6 +26,18 @@ namespace POSApplication.FrontEnd
             bs = new BindingSource();
         }
 
+        #region Singleton
+
+        private static FormBarang _instance;
+        public static FormBarang Instance()
+        {
+            if (_instance == null)
+                _instance = new FormBarang();
+            return _instance;
+        }
+
+        #endregion
+
         #region Data Binding
 
         private void TambahBinding()
@@ -202,6 +214,24 @@ namespace POSApplication.FrontEnd
             dgvBarang.DataSource = bs;
         }
 
+        private void CariData(string nama)
+        {
+            try
+            {
+                HapusBinding();
+                bs.Clear();
+                var results = barangDAL.GetByNama(nama);
+                bs.DataSource = results;
+                dgvBarang.DataSource = bs;
+                TambahBinding();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}", "Kesalahan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void FormBarang_Load(object sender, EventArgs e)
         {
@@ -257,6 +287,29 @@ namespace POSApplication.FrontEnd
                         MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void txtCariData_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCariData.Text.Length >= 3)
+            {
+                CariData(txtCariData.Text);
+            }
+            else if (txtCariData.Text.Length == 0)
+            {
+                IsiDataBarang();
+            }
+        }
+
+        private void dgvBarang_DoubleClick(object sender, EventArgs e)
+        {
+            var currBarang = (Barang)bs.Current;
+            FormPembelian.Instance().TxtKodeBarang.Text = currBarang.KodeBarang;
+            FormPembelian.Instance().TxtNamaBarang.Text = currBarang.NamaBarang;
+            FormPembelian.Instance().TxtHargaBeli.Text = currBarang.HargaBeli.ToString();
+            FormPembelian.Instance().TxtQty.Focus();
+
+            this.Hide();
         }
     }
 }
