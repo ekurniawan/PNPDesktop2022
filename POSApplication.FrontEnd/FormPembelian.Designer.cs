@@ -54,6 +54,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.nonotabeli = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itembeliid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kodeBarang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nama = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hargaBeli = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarang)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,6 +179,14 @@
             // dgvBarang
             // 
             this.dgvBarang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBarang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nonotabeli,
+            this.itembeliid,
+            this.kodeBarang,
+            this.Nama,
+            this.qty,
+            this.hargaBeli,
+            this.subtotal});
             this.dgvBarang.Location = new System.Drawing.Point(-1, 213);
             this.dgvBarang.Name = "dgvBarang";
             this.dgvBarang.RowHeadersWidth = 51;
@@ -215,6 +230,7 @@
             this.txtSubtotal.Name = "txtSubtotal";
             this.txtSubtotal.Size = new System.Drawing.Size(133, 27);
             this.txtSubtotal.TabIndex = 18;
+            this.txtSubtotal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSubtotal_KeyDown);
             // 
             // label7
             // 
@@ -276,6 +292,64 @@
             this.label12.Size = new System.Drawing.Size(65, 20);
             this.label12.TabIndex = 25;
             this.label12.Text = "Subtotal";
+            // 
+            // nonotabeli
+            // 
+            this.nonotabeli.DataPropertyName = "NoNotaBeli";
+            this.nonotabeli.HeaderText = "NoNotaBeli";
+            this.nonotabeli.MinimumWidth = 6;
+            this.nonotabeli.Name = "nonotabeli";
+            this.nonotabeli.Visible = false;
+            this.nonotabeli.Width = 125;
+            // 
+            // itembeliid
+            // 
+            this.itembeliid.DataPropertyName = "ItemBeliId";
+            this.itembeliid.HeaderText = "ItemBeliId";
+            this.itembeliid.MinimumWidth = 6;
+            this.itembeliid.Name = "itembeliid";
+            this.itembeliid.Visible = false;
+            this.itembeliid.Width = 125;
+            // 
+            // kodeBarang
+            // 
+            this.kodeBarang.DataPropertyName = "KodeBarang";
+            this.kodeBarang.HeaderText = "Kode";
+            this.kodeBarang.MinimumWidth = 6;
+            this.kodeBarang.Name = "kodeBarang";
+            this.kodeBarang.Width = 125;
+            // 
+            // Nama
+            // 
+            this.Nama.DataPropertyName = "NamaBarang";
+            this.Nama.HeaderText = "Nama Barang";
+            this.Nama.MinimumWidth = 6;
+            this.Nama.Name = "Nama";
+            this.Nama.Width = 250;
+            // 
+            // qty
+            // 
+            this.qty.DataPropertyName = "Jumlah";
+            this.qty.HeaderText = "Qty";
+            this.qty.MinimumWidth = 6;
+            this.qty.Name = "qty";
+            this.qty.Width = 125;
+            // 
+            // hargaBeli
+            // 
+            this.hargaBeli.DataPropertyName = "HargaBeli";
+            this.hargaBeli.HeaderText = "Harga Beli";
+            this.hargaBeli.MinimumWidth = 6;
+            this.hargaBeli.Name = "hargaBeli";
+            this.hargaBeli.Width = 125;
+            // 
+            // subtotal
+            // 
+            this.subtotal.DataPropertyName = "Subtotal";
+            this.subtotal.HeaderText = "Subtotal";
+            this.subtotal.MinimumWidth = 6;
+            this.subtotal.Name = "subtotal";
+            this.subtotal.Width = 125;
             // 
             // FormPembelian
             // 
@@ -345,5 +419,12 @@
         private Label label10;
         private Label label11;
         private Label label12;
+        private DataGridViewTextBoxColumn nonotabeli;
+        private DataGridViewTextBoxColumn itembeliid;
+        private DataGridViewTextBoxColumn kodeBarang;
+        private DataGridViewTextBoxColumn Nama;
+        private DataGridViewTextBoxColumn qty;
+        private DataGridViewTextBoxColumn hargaBeli;
+        private DataGridViewTextBoxColumn subtotal;
     }
 }
