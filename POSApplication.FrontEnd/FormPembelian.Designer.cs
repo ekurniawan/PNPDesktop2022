@@ -193,6 +193,7 @@
             this.dgvBarang.RowTemplate.Height = 29;
             this.dgvBarang.Size = new System.Drawing.Size(809, 237);
             this.dgvBarang.TabIndex = 13;
+            this.dgvBarang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvBarang_KeyDown);
             // 
             // nonotabeli
             // 

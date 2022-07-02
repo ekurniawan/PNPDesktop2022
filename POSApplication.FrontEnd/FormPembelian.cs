@@ -117,6 +117,7 @@ namespace POSApplication.FrontEnd
         private PembelianDAL _pembelianDAL;
         private ItemBeliDAL _itemBeliDAL;
         private BindingSource bs;
+        private bool isTambah = false;
 
         public FormPembelian()
         {
@@ -142,6 +143,7 @@ namespace POSApplication.FrontEnd
             if(e.KeyCode==Keys.Enter)
             {
                 HapusBinding();
+                isTambah = true;
                 FormBarang.Instance().Show();
             }
         }
@@ -159,25 +161,44 @@ namespace POSApplication.FrontEnd
 
         private void txtSubtotal_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Enter)
+            var newItemBeli = new ItemBeli
             {
-                HapusBinding();
-                var newItemBeli = new ItemBeli
+                NoNotaBeli = txtNoNotaBeli.Text,
+                KodeBarang = txtKode.Text,
+                HargaBeli = Convert.ToDecimal(txtHargaBeli.Text),
+                Jumlah = Convert.ToInt32(txtQty.Text)
+            };
+            HapusBinding();
+
+            if (e.KeyCode==Keys.Enter)
+            {
+                if (isTambah)
                 {
-                    NoNotaBeli = txtNoNotaBeli.Text,
-                    KodeBarang = txtKode.Text,
-                    HargaBeli = Convert.ToDecimal(txtHargaBeli.Text),
-                    Jumlah = Convert.ToInt32(txtQty.Text)
-                };
-                try
-                {
-                    _itemBeliDAL.TambahItemBeli(newItemBeli);
-                    IsiDataBarang();
-                    TambahBinding();
+                    try
+                    {
+                        _itemBeliDAL.TambahItemBeli(newItemBeli);
+                        IsiDataBarang();
+                        TambahBinding();
+                        isTambah = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"{ex.Message}", "Error");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"{ex.Message}", "Error");
+                    //update barang
+                    try
+                    {
+                        _itemBeliDAL.UpdateItemBeli(newItemBeli);
+                        IsiDataBarang();
+                        TambahBinding();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"{ex.Message}", "Error");
+                    }
                 }
             }
         }
@@ -185,6 +206,29 @@ namespace POSApplication.FrontEnd
         private void txtQty_TextChanged(object sender, EventArgs e)
         {
             HapusBinding();
+        }
+
+        private void dgvBarang_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Delete)
+            {
+                if(MessageBox.Show($"Apakah barang dengan kode {txtKode.Text} akan di delete ?",
+                    "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _itemBeliDAL.DeleteItemBeli(txtKode.Text,txtNoNotaBeli.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"{ex.Message}", "Error");
+                    }  
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

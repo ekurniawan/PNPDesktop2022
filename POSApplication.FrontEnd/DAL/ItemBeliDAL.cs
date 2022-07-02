@@ -40,6 +40,40 @@ namespace POSApplication.FrontEnd.DAL
             return lstViemPembelian;
         }
 
+        public void DeleteItemBeli(string kodeBarang,string nonotaBeli)
+        {
+            try
+            {
+                var deleteItem = _dbContext.ItemBelis.Where(i=>i.KodeBarang==kodeBarang && i.NoNotaBeli==nonotaBeli).FirstOrDefault();
+                if(deleteItem!=null)
+                {
+                    _dbContext.ItemBelis.Remove(deleteItem);
+                    _dbContext.SaveChanges();
+                }    
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
+        public void UpdateItemBeli(ItemBeli itemBeli)
+        {
+            try
+            {
+                var updateItem = _dbContext.ItemBelis.Where(i => i.NoNotaBeli == itemBeli.NoNotaBeli && i.KodeBarang == itemBeli.KodeBarang).FirstOrDefault();
+                if(updateItem!=null)
+                {
+                    updateItem.Jumlah = itemBeli.Jumlah;
+                    _dbContext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
         public void TambahItemBeli(ItemBeli itemBeli)
         {
             //cek apakah item barang sudah ada?
