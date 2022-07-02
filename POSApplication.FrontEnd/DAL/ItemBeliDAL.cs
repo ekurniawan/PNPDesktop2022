@@ -42,15 +42,34 @@ namespace POSApplication.FrontEnd.DAL
 
         public void TambahItemBeli(ItemBeli itemBeli)
         {
-            //menambahkan itembeli
-            try
+            //cek apakah item barang sudah ada?
+            var cekItem = _dbContext.ItemBelis.Where(
+                i=>i.NoNotaBeli==itemBeli.NoNotaBeli && i.KodeBarang==itemBeli.KodeBarang).FirstOrDefault();
+            if (cekItem != null) 
             {
-                _dbContext.ItemBelis.Add(itemBeli);
-                _dbContext.SaveChanges();
+                try
+                {
+                    //ada barang yang sama sudah ditambahkan, maka update quantity nya
+                    cekItem.Jumlah += itemBeli.Jumlah;
+                    _dbContext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception($"Error: {ex.Message}");
+                //menambahkan itembeli
+                try
+                {
+                    _dbContext.ItemBelis.Add(itemBeli);
+                    _dbContext.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error: {ex.Message}");
+                }
             }
         }
     }

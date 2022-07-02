@@ -141,6 +141,7 @@ namespace POSApplication.FrontEnd
         {
             if(e.KeyCode==Keys.Enter)
             {
+                HapusBinding();
                 FormBarang.Instance().Show();
             }
         }
@@ -150,6 +151,7 @@ namespace POSApplication.FrontEnd
             if(e.KeyCode==Keys.Enter)
             {
                 double subtotal = Convert.ToDouble(txtQty.Text) * Convert.ToDouble(TxtHargaBeli.Text);
+                txtSubtotal.Text = String.Empty;
                 txtSubtotal.Text = subtotal.ToString("N0");
                 txtSubtotal.Focus();
             }
@@ -178,6 +180,11 @@ namespace POSApplication.FrontEnd
                     MessageBox.Show($"{ex.Message}", "Error");
                 }
             }
+        }
+
+        private void txtQty_TextChanged(object sender, EventArgs e)
+        {
+            HapusBinding();
         }
     }
 }
